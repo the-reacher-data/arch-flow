@@ -1,0 +1,38 @@
+# Ignore Python cache and virtual environments
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+*.venv
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore log and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# Ignore compiled JS/CSS and transpiling output
+*.min.js
+*.map
+
+# Ignore large generated files
+dist/
+build/
+coverage/
+*.class
+*.o
+
+# Ignore GitHub Actions runner junk files
+.github/*.log
+
+# Ignore sensitive or temporary files used by GitHub workflows
+.github/actions/secrets.json  # Example of sensitive file
+.github/workflows/.temp/      # Example temp directory

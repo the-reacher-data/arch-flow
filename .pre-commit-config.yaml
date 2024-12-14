@@ -1,0 +1,40 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace       # Removes unnecessary trailing spaces
+      - id: end-of-file-fixer         # Ensures newline at the end of files
+      - id: check-yaml                # Validates YAML files for syntax errors
+        args: ["--allow-multiple-documents"]  # Supports YAML files with multiple `---` documents
+        files: "^actions/|^workflows/"       # Only runs on files in `actions/` or `workflows/`
+      - id: check-json                # Validates JSON files
+      - id: check-added-large-files   # Warns about large files but does not block commits
+        args: ["--maxkb=512"]         # Warn if files are over 512 KB
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: []
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        language_version: python3
+        files: "^.*\\.py$"
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.1.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  - repo: local
+    hooks:
+      - id: cz-check
+        name: Commitizen Check
+        entry: cz check
+        language: system
+        stages: [pre-push]
